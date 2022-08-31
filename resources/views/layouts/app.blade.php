@@ -59,7 +59,7 @@
 
                         @can('manage_roles')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('Roles') }}</a>
+                                <a class="nav-link" href="{{ route('roles.index') }}">{{ __('Roles') }}</a>
                             </li>
                         @endcan
                     </ul>
