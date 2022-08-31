@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Car;
+namespace App\Models\Vehicle;
 
 use App\Models\Category\Category;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

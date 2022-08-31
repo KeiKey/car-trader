@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        @can('manage_cars')
+                        @can('manage_vehicles')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('general.vehicles') }}</a>
                             </li>
@@ -41,7 +41,7 @@
 
                         @can('manage_categories')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('general.categories') }}</a>
+                                <a class="nav-link" href="{{ route('categories.index') }}">{{ __('general.categories') }}</a>
                             </li>
                         @endcan
 

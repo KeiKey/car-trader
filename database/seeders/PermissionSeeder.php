@@ -17,7 +17,7 @@ class PermissionSeeder extends Seeder
         $permissions = [
             ['name' => 'manage_users',      'guard_name' => 'web'],
             ['name' => 'manage_roles',      'guard_name' => 'web'],
-            ['name' => 'manage_cars',       'guard_name' => 'web'],
+            ['name' => 'manage_vehicles',   'guard_name' => 'web'],
             ['name' => 'manage_categories', 'guard_name' => 'web'],
             ['name' => 'manage_orders',     'guard_name' => 'web'],
         ];

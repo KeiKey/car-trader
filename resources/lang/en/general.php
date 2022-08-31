@@ -26,5 +26,8 @@ return [
     'update' => 'Update',
     'permissions' => 'Permissions',
     'actions' => 'Actions',
+    'create_category' => 'Create Category',
+    'categories_table' => 'Categories table',
+    'edit_category' => 'Edit Category',
 
 ];

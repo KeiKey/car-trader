@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Models\Car;
+namespace App\Models\Vehicle;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vehicle extends Model
 {
     use RelationshipTrait,
         AttributesTrait,
-        ScopesTrait;
+        ScopesTrait,
+        SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

@@ -5,40 +5,37 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">{{ __('Roles table') }}</div>
+                    <div class="card-header d-flex justify-content-between">
+                        {{ __('general.categories_table') }}
+
+                        <a class="btn btn-primary mx-1 btn-sm" href="{{ route('categories.create') }}">
+                            <i class="fa fa-plus mx-1"></i>{{ __('general.create_category') }}
+                        </a>
+                    </div>
 
                     <div class="card-body">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th class="w-auto">#</th>
-                                    <th class="w-25">{{ __('Name') }}</th>
-                                    <th class="w-50">{{ __('Permissions') }}</th>
+                                    <th class="w-50">{{ __('Name') }}</th>
                                     <th class="w-auto text-end">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                            @foreach($roles as $role)
+                            @foreach($categories as $category)
                                 <tr>
-                                    <th>{{ $role->id }}</th>
-                                    <td>{{ $role->name }}</td>
-                                    <td>
-                                        @foreach($role->permissions as $permission)
-                                            <span class="badge rounded-pill bg-primary">{{ $permission->name }}</span>
-                                        @endforeach
-                                    </td>
+                                    <th>{{ $category->id }}</th>
+                                    <td>{{ $category->name }}</td>
                                     <td class="d-flex justify-content-end">
-                                        <a class="btn btn-warning mx-1" href="{{ route('roles.edit', $role) }}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-warning mx-1" href="{{ route('categories.edit', $category) }}"><i class="fa fa-edit"></i></a>
 
-                                        <form
-                                            @if($role->non_deletable) title="Role is non deletable" @endif
-                                            action="{{ route('roles.destroy', $role) }}"
-                                            method="POST">
+                                        <form action="{{ route('categories.destroy', $category) }}" method="POST">
                                             @csrf
                                             @method('delete')
 
-                                            <button type="submit" @class(['btn btn-danger', 'disabled' => $role->non_deletable])>
+                                            <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

@@ -3,12 +3,14 @@
 namespace App\Models\Category;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
     use RelationshipTrait,
         AttributesTrait,
-        ScopesTrait;
+        ScopesTrait,
+        SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

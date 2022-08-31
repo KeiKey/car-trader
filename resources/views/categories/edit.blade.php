@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Edit Role') }}</div>
 
                     <div class="card-body">
-                        @include('partials.forms.role-form')
+                        @include('partials.forms.category-form')
                     </div>
                 </div>
             </div>
