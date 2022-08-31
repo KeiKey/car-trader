@@ -33,25 +33,35 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Cars') }}</a>
-                        </li>
+                        @can('manage_cars')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Cars') }}</a>
+                            </li>
+                        @endcan
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Categories') }}</a>
-                        </li>
+                        @can('manage_categories')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Categories') }}</a>
+                            </li>
+                        @endcan
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Orders') }}</a>
-                        </li>
+                        @can('manage_orders')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Orders') }}</a>
+                            </li>
+                        @endcan
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Users') }}</a>
-                        </li>
+                        @can('manage_users')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Users') }}</a>
+                            </li>
+                        @endcan
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Roles') }}</a>
-                        </li>
+                        @can('manage_roles')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Roles') }}</a>
+                            </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
