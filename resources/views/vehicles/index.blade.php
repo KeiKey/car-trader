@@ -5,22 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        {{ __('general.roles_table') }}
-
-                        <a class="btn btn-primary mx-1 btn-sm" href="{{ route('roles.create') }}">
-                            <i class="fa fa-plus mx-1"></i>{{ __('general.create_role') }}
-                        </a>
-                    </div>
+                    <div class="card-header">{{ __('Roles table') }}</div>
 
                     <div class="card-body">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th class="w-auto">#</th>
-                                    <th class="w-25">{{ __('general.name') }}</th>
-                                    <th class="w-50">{{ __('general.permissions') }}</th>
-                                    <th class="w-auto text-end">{{ __('general.actions') }}</th>
+                                    <th class="w-25">{{ __('Name') }}</th>
+                                    <th class="w-50">{{ __('Permissions') }}</th>
+                                    <th class="w-auto text-end">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
 
@@ -35,7 +29,7 @@
                                         @endforeach
                                     </td>
                                     <td class="d-flex justify-content-end">
-                                        <a class="btn btn-warning mx-1 btn-sm" href="{{ route('roles.edit', $role) }}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-warning mx-1" href="{{ route('roles.edit', $role) }}"><i class="fa fa-edit"></i></a>
 
                                         <form
                                             @if($role->non_deletable) title="Role is non deletable" @endif
@@ -44,7 +38,7 @@
                                             @csrf
                                             @method('delete')
 
-                                            <button type="submit" @class(['btn btn-danger btn-sm', 'disabled' => $role->non_deletable])>
+                                            <button type="submit" @class(['btn btn-danger', 'disabled' => $role->non_deletable])>
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

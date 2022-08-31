@@ -35,31 +35,31 @@
                     <ul class="navbar-nav me-auto">
                         @can('manage_cars')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('Cars') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('general.vehicles') }}</a>
                             </li>
                         @endcan
 
                         @can('manage_categories')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('Categories') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('general.categories') }}</a>
                             </li>
                         @endcan
 
                         @can('manage_orders')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('Orders') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('general.orders') }}</a>
                             </li>
                         @endcan
 
                         @can('manage_users')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('Users') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('general.users') }}</a>
                             </li>
                         @endcan
 
                         @can('manage_roles')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('roles.index') }}">{{ __('Roles') }}</a>
+                                <a class="nav-link" href="{{ route('roles.index') }}">{{ __('general.roles') }}</a>
                             </li>
                         @endcan
                     </ul>
