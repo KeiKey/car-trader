@@ -35,7 +35,7 @@
                     <ul class="navbar-nav me-auto">
                         @can('manage_vehicles')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('general.vehicles') }}</a>
+                                <a class="nav-link" href="{{ route('vehicles.index') }}">{{ __('general.vehicles') }}</a>
                             </li>
                         @endcan
 

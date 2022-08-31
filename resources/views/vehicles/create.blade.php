@@ -5,10 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">{{ __('Create Role') }}</div>
+                    <div class="card-header">{{ __('general.create_vehicle') }}</div>
 
                     <div class="card-body">
-                        @include('partials.forms.role-form')
+                        @include('partials.forms.vehicle-form')
                     </div>
                 </div>
             </div>
