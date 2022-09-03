@@ -1,4 +1,4 @@
-<div class="position-fixed right-0 py-5 w-25">
+<div class="position-fixed right-0 my-5 w-25">
     <div class="row justify-content-center mb-5 ">
         <div class="col-md-12">
             <div class="card">

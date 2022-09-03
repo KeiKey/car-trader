@@ -99,8 +99,10 @@
                                 </div>
                             </li>
                         @endguest
-                        
-                        <livewire:cart-component />
+
+                        @cannot('manage_vehicles')
+                            <livewire:cart-component />
+                        @endcannot
                     </ul>
                 </div>
             </div>
