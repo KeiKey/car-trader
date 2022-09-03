@@ -77,7 +77,7 @@ class CartService
     }
 
     /**
-     * Returns the content of the cart.
+     * Returns the items of the cart.
      *
      * @return Collection
      */

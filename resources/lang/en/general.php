@@ -44,5 +44,6 @@ return [
     'production_year'  => 'Production year',
     'last_updated_at'  => 'Last updated at',
     'add_to_cart'      => 'Add to cart',
+    'cart_is_empty'    => 'Cart is emoty!',
 
 ];
