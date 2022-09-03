@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait RelationshipTrait
 {
-    public function categoryOptions(): BelongsToMany
+    /**
+     * Return the Categories that has the Vehicle.
+     *
+     * @return BelongsToMany
+     */
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->withTimestamps()->withPivot('extra');
     }
 }

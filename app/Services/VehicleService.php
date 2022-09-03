@@ -15,7 +15,8 @@ class VehicleService
      */
     public function createVehicle(array $vehicleData): Vehicle
     {
-        return Vehicle::query()->create([
+        /** @var Vehicle $vehicle */
+        $vehicle = Vehicle::query()->create([
             'make' => $vehicleData['make'],
             'model' => $vehicleData['model'],
             'price' => $vehicleData['price'],
@@ -23,7 +24,15 @@ class VehicleService
             'serial_number' => $vehicleData['serial_number'],
             'engine_size' => $vehicleData['engine_size'],
             'production_year' => $vehicleData['production_year'],
+            'disabled_at' => $vehicleData['active'] ? now() : null
         ]);
+
+        foreach ($request->equipment as $equipment) {
+            $data = explode('-', $equipment);
+            $vehicle->categories()->attach($data[1], ['extra' => $data[0]]);
+        }
+
+        return $vehicle;
     }
 
     /**

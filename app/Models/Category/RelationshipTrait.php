@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait RelationshipTrait
 {
-    public function categoryOptions(): HasMany
+    /**
+     * Return the Vehicles that belong to the Category.
+     *
+     * @return HasMany
+     */
+    public function vehicles(): HasMany
     {
         return $this->hasMany(Vehicle::class);
     }

@@ -36,7 +36,7 @@ class VehicleController extends Controller
      */
     public function create(): View
     {
-        return view('vehicles.create', ['categories' => Category::all()]);
+        return view('vehicles.create', ['categories' => Category::all('id', 'name')]);
     }
 
     /**
@@ -47,6 +47,7 @@ class VehicleController extends Controller
      */
     public function store(VehicleRequest $request): RedirectResponse
     {
+        dd($request->all());
         $this->vehicleService->createVehicle($request->validated());
 
         return redirect()->route('vehicles.index');
@@ -60,7 +61,7 @@ class VehicleController extends Controller
      */
     public function edit(Vehicle $vehicle): View
     {
-        return view('vehicles.create', ['vehicle' => $vehicle]);
+        return view('vehicles.edit', ['vehicle' => $vehicle, 'categories' => Category::all('id', 'name')]);
     }
 
     /**

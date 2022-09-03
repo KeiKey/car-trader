@@ -24,6 +24,7 @@ return [
     'create'   => 'Create',
     'update'   => 'Update',
     'color'    => 'Color',
+    'active'   => 'Active',
     'price'    => 'Price',
     'permissions'      => 'Permissions',
     'categories'       => 'Categories',
