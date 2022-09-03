@@ -46,7 +46,7 @@
                 </ul>
 
                 <p class="card-text"><small class="text-muted">{{ __('general.last_updated_at') }}: {{ $vehicle->updated_at->format('H:i d/m/Y') }}</small></p>
-                <a class="btn btn-primary" wire:click="addToCart">{{ __('general.add_to_cart') }}</a>
+                <a class="btn btn-sm btn-primary" wire:click="addToCart">{{ __('general.add_to_cart') }}</a>
             </div>
         </div>
     </div>

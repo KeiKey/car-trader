@@ -9,10 +9,9 @@ use Illuminate\Contracts\View\View;
 
 class CartComponent extends Component
 {
-    protected $total;
-    protected $content;
+    protected Collection $items;
     protected $listeners = [
-        'vehicleAddedToCart' => 'updateCart',
+        'itemAddedToCart' => 'updateCart',
     ];
 
     /**
@@ -32,10 +31,7 @@ class CartComponent extends Component
      */
     public function render(): View
     {
-        return view('livewire.cart', [
-            'total' => $this->total,
-            'content' => $this->content,
-        ]);
+        return view('livewire.cart', ['items' => $this->items]);
     }
 
     /**
@@ -47,6 +43,7 @@ class CartComponent extends Component
     public function removeFromCart(int $id): void
     {
         Cart::remove($id);
+
         $this->updateCart();
     }
 
@@ -58,30 +55,43 @@ class CartComponent extends Component
     public function clearCart(): void
     {
         Cart::clear();
+
         $this->updateCart();
     }
 
     /**
-     * Updates a cart item.
+     * Increase quantity of cart item.
      *
      * @param int $id
-     * @param string $action
      * @return void
      */
-    public function updateCartItem(int $id, string $action): void
+    public function increaseCartItemQuantity(int $id): void
     {
-        Cart::update($id, $action);
+        Cart::updateQuantity($id, 1);
+
         $this->updateCart();
     }
 
     /**
-     * Rerenders the cart items and total price on the browser.
+     * Decrease quantity of cart item.
+     *
+     * @param int $id
+     * @return void
+     */
+    public function decreaseCartItemQuantity(int $id): void
+    {
+        Cart::updateQuantity($id, -1);
+
+        $this->updateCart();
+    }
+
+    /**
+     * Rerenders the cart items.
      *
      * @return void
      */
-    public function updateCart()
+    public function updateCart(): void
     {
-        $this->total = Cart::total();
-        $this->content = Cart::content();
+        $this->items = Cart::items();
     }
 }

@@ -39,8 +39,8 @@ class VehicleComponent extends Component
      */
     public function addToCart(): void
     {
-        Cart::add($this->vehicle);
+        Cart::addItem($this->vehicle);
 
-        $this->emit('vehicleAddedToCart');
+        $this->emit('itemAddedToCart');
     }
 }

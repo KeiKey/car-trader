@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         {{ __('general.categories_table') }}
 
-                        <a class="btn btn-primary mx-1 btn-sm" href="{{ route('categories.create') }}">
+                        <a class="btn btn-sm btn-primary mx-1" href="{{ route('categories.create') }}">
                             <i class="fa fa-plus mx-1"></i>{{ __('general.create_category') }}
                         </a>
                     </div>
@@ -29,13 +29,13 @@
                                     <th>{{ $category->id }}</th>
                                     <td>{{ $category->name }}</td>
                                     <td class="d-flex justify-content-end">
-                                        <a class="btn btn-warning mx-1" href="{{ route('categories.edit', $category) }}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-sm btn-warning mx-1" href="{{ route('categories.edit', $category) }}"><i class="fa fa-edit"></i></a>
 
                                         <form action="{{ route('categories.destroy', $category) }}" method="POST">
                                             @csrf
                                             @method('delete')
 
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn btn-sm btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

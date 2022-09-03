@@ -19,7 +19,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @livewireStyles
-    @livewireScripts
 </head>
 <body>
     <div id="app">
@@ -100,15 +99,8 @@
                                 </div>
                             </li>
                         @endguest
-
-                        <li class="nav-item">
-{{--                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cartModal">--}}
-{{--                                <i class="fa fa-shopping-cart"></i> <span class="badge badge-light">4</span>--}}
-{{--                            </button>--}}
-                            <livewire:cart-button-component />
-
-                            <livewire:cart-component />
-                        </li>
+                        
+                        <livewire:cart-component />
                     </ul>
                 </div>
             </div>
@@ -118,5 +110,7 @@
             @yield('content')
         </main>
     </div>
+
+    @livewireScripts
 </body>
 </html>

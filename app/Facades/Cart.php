@@ -8,12 +8,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static void add(Vehicle $vehicle)
- * @method static void update(string $id, string $action)
- * @method static void remove(string $id)
+ * @method static void addItem(Vehicle $vehicle)
+ * @method static void updateQuantity(int $id, int $differenceInQuantity)
+ * @method static void remove(int $id)
  * @method static void clear()
- * @method static Collection content()
- * @method static string total()
+ * @method static Collection items()
  */
 class Cart extends Facade
 {

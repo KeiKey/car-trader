@@ -8,17 +8,10 @@ use Illuminate\Session\SessionManager;
 
 class CartService
 {
-    const MINIMUM_QUANTITY = 1;
-    const DEFAULT_INSTANCE = 'shopping-cart';
+    const SESSION_CART_INSTANCE = 'shopping-cart';
 
     protected SessionManager $session;
-    protected $instance;
 
-    /**
-     * Constructs a new cart object.
-     *
-     * @param SessionManager $session
-     */
     public function __construct(SessionManager $session)
     {
         $this->session = $session;
@@ -30,45 +23,31 @@ class CartService
      * @param Vehicle $vehicle
      * @return void
      */
-    public function add(Vehicle $vehicle): void
+    public function addItem(Vehicle $vehicle): void
     {
-        $content = $this->getContent()->put($vehicle->id, $vehicle);
+        $content = $this->getCartItems()->put($vehicle->id, $this->createCartItem($vehicle));
 
-        $this->session->put(self::DEFAULT_INSTANCE, $content);
+        $this->session->put(self::SESSION_CART_INSTANCE, $content);
     }
 
     /**
      * Updates the quantity of a cart item.
      *
      * @param int $id
-     * @param string $action
+     * @param int $differenceInQuantity
      * @return void
      */
-    public function update(int $id, string $action): void
+    public function updateQuantity(int $id, int $differenceInQuantity): void
     {
-        $content = $this->getContent();
+        $content = $this->getCartItems();
 
         if ($content->has($id)) {
             $cartItem = $content->get($id);
-
-            switch ($action) {
-                case 'plus':
-                    $cartItem->put('quantity', $content->get($id)->get('quantity') + 1);
-                    break;
-                case 'minus':
-                    $updatedQuantity = $content->get($id)->get('quantity') - 1;
-
-                    if ($updatedQuantity < self::MINIMUM_QUANTITY) {
-                        $updatedQuantity = self::MINIMUM_QUANTITY;
-                    }
-
-                    $cartItem->put('quantity', $updatedQuantity);
-                    break;
-            }
+            $cartItem->put('quantity', $cartItem->get('quantity') + $differenceInQuantity);
 
             $content->put($id, $cartItem);
 
-            $this->session->put(self::DEFAULT_INSTANCE, $content);
+            $this->session->put(self::SESSION_CART_INSTANCE, $content);
         }
     }
 
@@ -80,10 +59,10 @@ class CartService
      */
     public function remove(int $id): void
     {
-        $content = $this->getContent();
+        $content = $this->getCartItems();
 
         if ($content->has($id)) {
-            $this->session->put(self::DEFAULT_INSTANCE, $content->except($id));
+            $this->session->put(self::SESSION_CART_INSTANCE, $content->except($id));
         }
     }
 
@@ -94,7 +73,7 @@ class CartService
      */
     public function clear(): void
     {
-        $this->session->forget(self::DEFAULT_INSTANCE);
+        $this->session->forget(self::SESSION_CART_INSTANCE);
     }
 
     /**
@@ -102,26 +81,25 @@ class CartService
      *
      * @return Collection
      */
-    public function content(): Collection
+    public function items(): Collection
     {
-        return is_null($this->session->get(self::DEFAULT_INSTANCE)) ? collect([]) : $this->session->get(self::DEFAULT_INSTANCE);
+        return is_null($this->session->get(self::SESSION_CART_INSTANCE)) ? collect([]) : $this->session->get(self::SESSION_CART_INSTANCE);
     }
 
     /**
-     * Returns total price of the items in the cart.
+     * Creates a new cart item based on the vehicle.
      *
-     * @return string
+     * @param Vehicle $vehicle
+     * @return Collection
      */
-    public function total(): string
+    private function createCartItem(Vehicle $vehicle): Collection
     {
-//        $content = $this->getContent();
-//
-//        $total = $content->reduce(function ($total, $item) {
-//            return $total += $item->get('price') * $item->get('quantity');
-//        });
-
-//        return number_format($total, 2);
-        return 5000;
+        return collect([
+            'id'       => $vehicle->id,
+            'name'     => $vehicle->make.' - '.$vehicle->model,
+            'quantity' => 1,
+            'totalQuantity' => $vehicle->quantity,
+        ]);
     }
 
     /**
@@ -129,8 +107,8 @@ class CartService
      *
      * @return Collection
      */
-    protected function getContent(): Collection
+    private function getCartItems(): Collection
     {
-        return $this->session->has(self::DEFAULT_INSTANCE) ? $this->session->get(self::DEFAULT_INSTANCE) : collect([]);
+        return $this->session->has(self::SESSION_CART_INSTANCE) ? $this->session->get(self::SESSION_CART_INSTANCE) : collect([]);
     }
 }

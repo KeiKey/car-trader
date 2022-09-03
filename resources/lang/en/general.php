@@ -27,6 +27,7 @@ return [
     'active'   => 'Active',
     'quantity' => 'Quantity',
     'price'    => 'Price',
+    'cart'     => 'Cart',
     'permissions'      => 'Permissions',
     'categories'       => 'Categories',
     'categories_table' => 'Categories table',
