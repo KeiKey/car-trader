@@ -25,6 +25,7 @@ return [
     'update'   => 'Update',
     'color'    => 'Color',
     'active'   => 'Active',
+    'quantity' => 'Quantity',
     'price'    => 'Price',
     'permissions'      => 'Permissions',
     'categories'       => 'Categories',

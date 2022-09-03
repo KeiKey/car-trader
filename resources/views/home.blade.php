@@ -2,54 +2,13 @@
 
 @section('content')
 <div class="container">
+{{--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cartModal">--}}
+{{--        <i class="fa fa-shopping-cart"></i> <span class="badge badge-light">4</span>--}}
+{{--    </button>--}}
+{{--    <livewire:cart-component />--}}
+
     @foreach($vehicles as $vehicle)
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ $vehicle->make }}</div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $vehicle->model }}</h5>
-
-                        <ul class="list-group my-3">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ __('general.color') }}:
-                                <h5 class="mb-0">
-                                    <span class="badge rounded-pill bg-primary">{{ $vehicle->color }}</span>
-                                </h5>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ __('general.engine_size') }}:
-                                <h5 class="mb-0">
-                                    <span class="badge rounded-pill bg-primary">{{ $vehicle->engine_size }}</span>
-                                </h5>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ __('general.production_year') }}:
-                                <h5 class="mb-0">
-                                    <span class="badge rounded-pill bg-primary">{{ $vehicle->production_year }}</span>
-                                </h5>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ __('general.price') }}:
-                                <h5 class="mb-0">
-                                    <span class="badge rounded-pill bg-primary">$ {{ $vehicle->price }}</span>
-                                </h5>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ __('general.serial_number') }}:
-                                <h5 class="mb-0">
-                                    <span class="badge rounded-pill bg-primary">{{ $vehicle->serial_number }}</span>
-                                </h5>
-                            </li>
-                        </ul>
-
-                        <p class="card-text"><small class="text-muted">{{ __('general.last_updated_at') }}: {{ $vehicle->updated_at->format('H:i d/m/Y') }}</small></p>
-                        <a class="btn btn-primary">{{ __('general.add_to_cart') }}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <livewire:vehicle-component :vehicle='$vehicle' />
     @endforeach
 
     <div class="row justify-content-center mb-5">
@@ -59,4 +18,3 @@
     </div>
 </div>
 @endsection
-

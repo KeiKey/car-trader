@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
+    @livewireScripts
 </head>
 <body>
     <div id="app">
@@ -100,9 +102,12 @@
                         @endguest
 
                         <li class="nav-item">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa fa-shopping-cart"></i> <span class="badge badge-light">4</span>
-                            </button>
+{{--                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cartModal">--}}
+{{--                                <i class="fa fa-shopping-cart"></i> <span class="badge badge-light">4</span>--}}
+{{--                            </button>--}}
+                            <livewire:cart-button-component />
+
+                            <livewire:cart-component />
                         </li>
                     </ul>
                 </div>
@@ -112,8 +117,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-
-        @include('partials.cart')
     </div>
 </body>
 </html>

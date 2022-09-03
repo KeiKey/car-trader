@@ -25,6 +25,7 @@ class Vehicle extends Model
         'color',
         'production_year',
         'price',
+        'quantity',
         'bought_at',
         'buyer_id',
         'deactivated_at'
