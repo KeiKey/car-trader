@@ -27,10 +27,10 @@ class VehicleService
             'disabled_at' => $vehicleData['active'] ? now() : null
         ]);
 
-        foreach ($request->equipment as $equipment) {
-            $data = explode('-', $equipment);
-            $vehicle->categories()->attach($data[1], ['extra' => $data[0]]);
-        }
+//        foreach ($request->equipment as $equipment) {
+//            $data = explode('-', $equipment);
+//            $vehicle->categories()->attach($data[1], ['extra' => $data[0]]);
+//        }
 
         return $vehicle;
     }

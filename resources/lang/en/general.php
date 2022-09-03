@@ -40,5 +40,7 @@ return [
     'serial_number'    => 'Serial number',
     'engine_size'      => 'Engine size',
     'production_year'  => 'Production year',
+    'last_updated_at'  => 'Last updated at',
+    'add_to_cart'      => 'Add to cart',
 
 ];

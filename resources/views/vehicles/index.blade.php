@@ -44,6 +44,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        {{ $vehicles->links() }}
                     </div>
                 </div>
             </div>

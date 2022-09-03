@@ -26,7 +26,7 @@ class VehicleController extends Controller
      */
     public function index(): View
     {
-        return view('vehicles.index', ['vehicles' => Vehicle::all()]);
+        return view('vehicles.index', ['vehicles' => Vehicle::query()->paginate(10)]);
     }
 
     /**
@@ -47,7 +47,6 @@ class VehicleController extends Controller
      */
     public function store(VehicleRequest $request): RedirectResponse
     {
-        dd($request->all());
         $this->vehicleService->createVehicle($request->validated());
 
         return redirect()->route('vehicles.index');

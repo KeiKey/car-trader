@@ -3,27 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vehicle\Vehicle;
-use App\Models\Category\Category;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Show the application home page.
      *
-     * @return void
+     * @return View
      */
-    public function __construct()
+    public function index(): View
     {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
+        return view('home', ['vehicles' => Vehicle::query()->active()->paginate(10)]);
     }
 }
