@@ -5,8 +5,14 @@
                 <div class="card-header">{{ __('general.cart') }}</div>
 
                 <div class="card-body">
+                    @auth
+                        <form action="{{ route('orders.store') }}" method="POST" id="order-form">
+                            @csrf
+                    @endauth
+
                     @if ($items->isNotEmpty())
-                        <table class="table">
+
+                        <table class="table" id="cart-items-table">
                             <thead>
                             <tr>
                                 <th >{{ __('general.name') }}</th>
@@ -18,10 +24,14 @@
                             <tbody>
                             @foreach($items as $id => $cartItem)
                                 <tr class="align-text-bottom">
+                                    <input class="item" type="hidden" name="item[]" value="{{ $id }}">
+                                    <input class="item-qty" type="hidden" name="quantity[]" value="{{ $cartItem->get('quantity') }}">
+
                                     <td>{{ $cartItem->get('name') }}</td>
                                     <td>{{ $cartItem->get('quantity') }}</td>
                                     <td class="d-flex justify-content-end">
                                         <button
+                                            type="button"
                                             @class([
                                                 'btn btn-sm btn-warning',
                                                 'disabled' => $cartItem->get('quantity') === 1
@@ -30,6 +40,7 @@
                                         </button>
 
                                         <button
+                                            type="button"
                                             @class([
                                                 'btn btn-sm btn-success mx-1',
                                                 'disabled' => $cartItem->get('quantity') == $cartItem->get('totalQuantity')
@@ -48,11 +59,9 @@
                             <tfoot>
                             <tr>
                                 <td>
-                                    @auth
-                                        <button class="btn btn-sm btn-success" wire:click="clearCart()">
-                                            <i class="fa fa-shopping-cart"></i> {{ __('general.buy') }}
-                                        </button>
-                                    @endauth
+                                    <button class="btn btn-sm btn-success @guest disabled @endguest" type="submit">
+                                        <i class="fa fa-shopping-cart"></i> {{ __('general.buy') }}
+                                    </button>
                                 </td>
                                 <td></td>
                                 <td>
@@ -66,6 +75,10 @@
                     @else
                         <p class="text-center mb-2">{{ __('general.cart_is_empty') }}</p>
                     @endif
+
+                    @auth
+                        </form>
+                    @endauth
                 </div>
             </div>
         </div>

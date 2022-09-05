@@ -37,6 +37,7 @@ class CreateVehiclesTable extends Migration
             $table->unsignedBigInteger('vehicle_id');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

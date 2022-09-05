@@ -5479,6 +5479,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //         }).appendTo(stationForm);
 //     })
 // })
+var orderForm = document.getElementById('order-form');
+orderForm.addEventListener('submit', function (event) {
+  $('#cart-items-table tbody tr').each(function () {
+    $('<input>', {
+      type: 'hidden',
+      name: 'orderItems[]',
+      value: $(this).find("input.item").val() + "~" + $(this).find("input.item-qty").val()
+    }).appendTo(orderForm);
+  });
+});
 
 /***/ }),
 

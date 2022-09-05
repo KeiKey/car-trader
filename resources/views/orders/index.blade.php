@@ -5,41 +5,44 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Roles table') }}</div>
+                    <div class="card-header">{{ __('Orders table') }}</div>
 
                     <div class="card-body">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="w-auto">#</th>
-                                    <th class="w-25">{{ __('Name') }}</th>
-                                    <th class="w-50">{{ __('Permissions') }}</th>
-                                    <th class="w-auto text-end">{{ __('Actions') }}</th>
+                                    <th>#</th>
+                                    <th>{{ __('general.purchaser') }}</th>
+                                    <th>{{ __('general.state') }}</th>
+                                    <th>{{ __('general.vehicles') }}</th>
+                                    <th class="text-end">{{ __('general.actions') }}</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                            @foreach($roles as $role)
+                            @foreach($orders as $order)
                                 <tr>
-                                    <th>{{ $role->id }}</th>
-                                    <td>{{ $role->name }}</td>
+                                    <th>{{ $order->id }}</th>
+                                    <td>{{ $order->purchaser->name }}</td>
                                     <td>
-                                        @foreach($role->permissions as $permission)
-                                            <span class="badge rounded-pill bg-primary">{{ $permission->name }}</span>
+                                        <span
+                                            @class(['badge rounded-pill', 'bg-success' => $order->state == 'open', 'bg-danger' => $order->state == 'canceled'])
+                                        >{{ $order->state }}</span>
+                                    </td>
+                                    <td>
+                                        @foreach($order->vehicles as $vehicle)
+                                            <span class="badge rounded-pill bg-primary">
+                                                {{ $vehicle->make }} - {{ $vehicle->pivot->quantity }}
+                                            </span>
                                         @endforeach
                                     </td>
                                     <td class="d-flex justify-content-end">
-                                        <a class="btn btn-sm btn-warning mx-1" href="{{ route('roles.edit', $role) }}"><i class="fa fa-edit"></i></a>
-
-                                        <form
-                                            @if($role->non_deletable) title="Role is non deletable" @endif
-                                            action="{{ route('roles.destroy', $role) }}"
-                                            method="POST">
+                                        <form action="{{ route('orders.cancel', $order) }}" method="POST">
                                             @csrf
-                                            @method('delete')
+                                            @method('put')
 
-                                            <button type="submit" @class(['btn btn-sm btn-danger', 'disabled' => $role->non_deletable])>
-                                                <i class="fa fa-trash"></i>
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-times  "></i> {{ __('general.cancel_order') }}
                                             </button>
                                         </form>
                                     </td>

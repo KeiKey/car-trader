@@ -28,11 +28,13 @@ return [
     'active'   => 'Active',
     'quantity' => 'Quantity',
     'price'    => 'Price',
+    'state'    => 'State',
     'action'   => 'Action',
     'cart'     => 'Cart',
     'buy'      => 'Buy',
     'extra'    => 'Extra',
     'category' => 'Category',
+    'purchaser'        => 'Purchaser',
     'permissions'      => 'Permissions',
     'categories'       => 'Categories',
     'categories_table' => 'Categories table',
@@ -51,5 +53,8 @@ return [
     'last_updated_at'  => 'Last updated at',
     'add_to_cart'      => 'Add to cart',
     'cart_is_empty'    => 'Cart is empty!',
+    'cancel_order'     => 'Cancel order',
+    'my_orders'        => 'My orders',
+    'quantity_insufficient' => 'Vehicle quantity is insufficient!',
 
 ];

@@ -38,6 +38,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.orders.index', ['user' => auth()->user()]) }}">{{ __('general.my_orders') }}</a>
+                            </li>
+                        @endauth
+
                         @can('manage_vehicles')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('vehicles.index') }}">{{ __('general.vehicles') }}</a>
@@ -52,7 +58,7 @@
 
                         @can('manage_orders')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('general.orders') }}</a>
+                                <a class="nav-link" href="{{ route('orders.index') }}">{{ __('general.orders') }}</a>
                             </li>
                         @endcan
 

@@ -15,9 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed production_year
  * @property mixed price
  * @property mixed quantity
- * @property mixed bought_at
- * @property mixed buyer_id
  * @property mixed deactivated_at
+ * @property mixed deactivated_by
  */
 class Vehicle extends Model
 {
@@ -40,13 +39,10 @@ class Vehicle extends Model
         'production_year',
         'price',
         'quantity',
-        'bought_at',
-        'buyer_id',
         'deactivated_at'
     ];
 
     protected $casts = [
-        'bought_at'      => 'timestamp',
         'deactivated_at' => 'timestamp',
     ];
 }

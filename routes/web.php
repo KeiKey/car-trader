@@ -19,7 +19,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::middleware('auth')
     ->group(function () {
-        Route::get('users/{user}/orders', [App\Http\Controllers\OrderController::class, 'indexUserOrders'])->name('user.orders');
+        Route::post('orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+        Route::put('orders/{order}/cancel', [App\Http\Controllers\OrderController::class, 'cancel'])->name('orders.cancel');
+        Route::get('users/{user}/orders', [App\Http\Controllers\OrderController::class, 'indexUserOrders'])->name('user.orders.index');
 
         Route::prefix('panel')
             ->group(function () {
@@ -32,7 +34,6 @@ Route::middleware('auth')
                 Route::resource('vehicles', App\Http\Controllers\VehicleController::class)
                     ->middleware('permission:manage_vehicles');
 
-                Route::resource('orders', App\Http\Controllers\OrderController::class)
-                    ->middleware('permission:manage_orders')->except(['index']);
+                Route::get('orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
             });
     });
