@@ -14,12 +14,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $roles = [
-            ['name' => 'super-admin', 'non_deletable' => true, 'guard_name' => 'web'],
-            ['name' => 'admin',       'non_deletable' => true, 'guard_name' => 'web'],
-            ['name' => 'customer',    'non_deletable' => true, 'guard_name' => 'web'],
-        ];
-
-        Role::query()->insert($roles);
+        Role::query()->updateOrCreate(['name' => 'super-admin', 'non_deletable' => true, 'guard_name' => 'web']);
+        Role::query()->updateOrCreate(['name' => 'admin',       'non_deletable' => true, 'guard_name' => 'web']);
+        Role::query()->updateOrCreate(['name' => 'customer',    'non_deletable' => true, 'guard_name' => 'web']);
     }
 }
