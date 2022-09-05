@@ -59,7 +59,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category): View
     {
-        return view('categories.create', ['category' => $category]);
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**

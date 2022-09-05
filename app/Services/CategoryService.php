@@ -27,7 +27,9 @@ class CategoryService
      */
     public function updateCategory(Category $category, array $categoryData): Category
     {
-        return $category->update(['name' => $categoryData['name']]);
+        $category->update(['name' => $categoryData['name']]);
+
+        return $category;
     }
 
     /**
