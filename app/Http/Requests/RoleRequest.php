@@ -23,10 +23,16 @@ class RoleRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'          => ['required', 'string', 'max:255', 'unique:roles,name'],
+        $rules = [
+            'name'          => ['required', 'string', 'max:255'],
             'permissions'   => ['required', 'array'],
             'permissions.*' => ['exists:permissions,id']
         ];
+
+        if ($this->isMethod('POST')) {
+            $rules['name'][] = 'unique:roles,name';
+        }
+
+        return $rules;
     }
 }
