@@ -137,7 +137,7 @@
     <div class="row mb-0">
         <div class="col-md-6 offset-md-3">
             <button type="submit" class="btn btn-primary btn-sm">
-                {{ __('general.create') }}
+                {{ isset($vehicle) ? __('general.update') : __('general.create') }}
             </button>
         </div>
     </div>
