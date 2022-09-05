@@ -100,9 +100,9 @@
                             </li>
                         @endguest
 
-                        @cannot('manage_vehicles')
+{{--                        @cannot('manage_vehicles')--}}
                             <livewire:cart-component />
-                        @endcannot
+{{--                        @endcannot--}}
                     </ul>
                 </div>
             </div>
