@@ -32,7 +32,7 @@ class VehicleRequest extends FormRequest
             'serial_number'     => ['required', 'string', 'size:17', 'unique:vehicles,serial_number'],
             'engine_size'       => ['required', 'integer'],
             'production_year'   => ['required', 'integer'],
-            'vehicleCategories' => ['nullable', 'array'],
+            'vehicleCategories' => ['array'],
         ];
     }
 
@@ -41,6 +41,12 @@ class VehicleRequest extends FormRequest
         if (empty($this->active)) {
             $this->merge([
                 'active' => '0'
+            ]);
+        }
+
+        if (empty($this->vehicleCategories)) {
+            $this->merge([
+                'vehicleCategories' => []
             ]);
         }
     }
