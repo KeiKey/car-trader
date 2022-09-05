@@ -5468,16 +5468,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \********************************/
 /***/ (() => {
 
-var stationForm = document.getElementById('vehicle-form');
-stationForm.addEventListener('submit', function (event) {
-  $('#category-table tbody tr').each(function () {
-    $('<input>', {
-      type: 'hidden',
-      name: 'vehicleCategories[]',
-      value: $(this).find("input.vehicle-category-extra").val() + "~" + $(this).find("select.vehicle-category").val()
-    }).appendTo(stationForm);
-  });
-});
+// let stationForm = document.getElementById('vehicle-form');
+//
+// stationForm.addEventListener('submit', function (event) {
+//     $('#category-table tbody tr').each(function() {
+//         $('<input>', {
+//             type: 'hidden',
+//             name: 'vehicleCategories[]',
+//             value: $(this).find(`input.vehicle-category-extra`).val()+`~`+$(this).find(`select.vehicle-category`).val()
+//         }).appendTo(stationForm);
+//     })
+// })
 
 /***/ }),
 

@@ -19,9 +19,20 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::middleware('auth')
     ->group(function () {
-        Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('permission:manage_roles')->except(['show']);
+        Route::get('users/{user}/orders', [App\Http\Controllers\OrderController::class, 'indexUserOrders'])->name('user.orders');
 
-        Route::resource('categories', App\Http\Controllers\CategoryController::class)->middleware('permission:manage_categories')->except(['show']);
+        Route::prefix('panel')
+            ->group(function () {
+                Route::resource('roles', App\Http\Controllers\RoleController::class)
+                    ->middleware('permission:manage_roles')->except(['show']);
 
-        Route::resource('vehicles', App\Http\Controllers\VehicleController::class)->middleware('permission:manage_vehicles');
+                Route::resource('categories', App\Http\Controllers\CategoryController::class)
+                    ->middleware('permission:manage_categories')->except(['show']);
+
+                Route::resource('vehicles', App\Http\Controllers\VehicleController::class)
+                    ->middleware('permission:manage_vehicles');
+
+                Route::resource('orders', App\Http\Controllers\OrderController::class)
+                    ->middleware('permission:manage_orders')->except(['index']);
+            });
     });

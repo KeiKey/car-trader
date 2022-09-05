@@ -22,7 +22,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav @class([
+                'navbar navbar-expand-md shadow-sm',
+                'navbar-light bg-white' => !str_contains(url()->current(), 'panel'),
+                'navbar-dark bg-dark' => str_contains(url()->current(), 'panel')
+            ])>
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
