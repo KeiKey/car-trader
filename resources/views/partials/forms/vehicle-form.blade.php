@@ -141,7 +141,7 @@
 
         <div class="col-md-9">
             <div class="form-check form-switch">
-                <input class="form-check-input" @isset($vehicle) @if(!$vehicle->deactivated_at) checked @endif @endisset
+                <input class="form-check-input" @isset($vehicle) @if($vehicle->active) checked @endif @endisset
                 type="checkbox" role="switch" id="active" name="active" value="1">
             </div>
         </div>

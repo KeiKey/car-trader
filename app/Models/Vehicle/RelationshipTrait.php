@@ -26,7 +26,7 @@ trait RelationshipTrait
      *
      * @return HasMany
      */
-    public function categoryVehicle(): HasMany
+    public function categoryVehicles(): HasMany
     {
         return $this->hasMany(CategoryVehicle::class);
     }
