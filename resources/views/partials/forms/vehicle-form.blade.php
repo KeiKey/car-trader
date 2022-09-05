@@ -122,7 +122,7 @@
         </div>
     </div>
 
-    <vehicle-categories :categories="{{ $categories }}" :existingVehicleCategories="{{ $categories }}"></vehicle-categories>
+    <livewire:vehicle-categories-component :categories='$categories' :existingVehicleCategories="$categories"/>
 
     <div class="row mb-0">
         <div class="col-md-6 offset-md-3">

@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+    @include('partials.search-filter')
+
     @foreach($vehicles as $vehicle)
         <livewire:vehicle-component :vehicle='$vehicle' />
     @endforeach

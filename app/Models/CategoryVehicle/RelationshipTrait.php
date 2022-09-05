@@ -2,32 +2,29 @@
 
 namespace App\Models\CategoryVehicle;
 
-use App\Models\Department\Department;
-use App\Models\Equipment\Equipment;
-use App\Models\EquipmentType\EquipmentType;
-use App\Models\Station\Station;
+use App\Models\Category\Category;
+use App\Models\Vehicle\Vehicle;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait RelationshipTrait
 {
     /**
-     * Return the Station that has the Equipment.
+     * Return the Vehicle that has the CategoryVehicle.
      *
      * @return BelongsTo
      */
-    public function station(): BelongsTo
+    public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(Station::class);
+        return $this->belongsTo(Vehicle::class);
     }
 
     /**
-     * Return the Equipment that has the Equipment.
+     * Return the Category that has the CategoryVehicle.
      *
      * @return BelongsTo
      */
-    public function equipment(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(Equipment::class);
+        return $this->belongsTo(Category::class);
     }
 }
