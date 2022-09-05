@@ -47,9 +47,17 @@
 
                             <tfoot>
                             <tr>
-                                <td colspan="3">
+                                <td>
+                                    @auth
+                                        <button class="btn btn-sm btn-success" wire:click="clearCart()">
+                                            <i class="fa fa-shopping-cart"></i> {{ __('general.buy') }}
+                                        </button>
+                                    @endauth
+                                </td>
+                                <td></td>
+                                <td>
                                     <button class="btn btn-sm btn-danger" wire:click="clearCart()">
-                                        <i class="fa fa-trash"></i> Clear Cart
+                                        <i class="fa fa-trash"></i> {{ __('general.clear_cart') }}
                                     </button>
                                 </td>
                             </tr>

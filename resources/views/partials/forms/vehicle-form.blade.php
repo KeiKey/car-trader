@@ -122,6 +122,21 @@
     </div>
 
     <div class="row mb-3">
+        <label for="quantity" class="col-md-3 col-form-label text-md-end">{{ __('general.quantity') }}</label>
+
+        <div class="col-md-9">
+            <input id="quantity" type="number" min="0" value="{{ old('quantity', $vehicle->quantity ?? '1') }}"
+                   class="form-control @error('quantity') is-invalid @enderror" name="quantity" required step="1">
+
+            @error('quantity')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="row mb-3">
         <label for="active" class="col-md-3 col-form-label text-md-end">{{ __('general.active') }}</label>
 
         <div class="col-md-9">

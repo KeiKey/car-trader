@@ -29,6 +29,7 @@ class VehicleRequest extends FormRequest
             'price' => ['required', 'string', 'max:255'],
             'color' => ['required', 'string', 'max:255'],
             'active'            => ['nullable'],
+            'quantity'          => ['required', 'numeric', 'min:0'],
             'serial_number'     => ['required', 'string', 'size:17', 'unique:vehicles,serial_number'],
             'engine_size'       => ['required', 'integer'],
             'production_year'   => ['required', 'integer'],
