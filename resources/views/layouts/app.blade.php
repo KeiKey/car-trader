@@ -64,7 +64,7 @@
 
                         @can('manage_users')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('general.users') }}</a>
+                                <a class="nav-link" href="{{ route('users.index') }}">{{ __('general.users') }}</a>
                             </li>
                         @endcan
 

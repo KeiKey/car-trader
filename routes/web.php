@@ -25,15 +25,13 @@ Route::middleware('auth')
 
         Route::prefix('panel')
             ->group(function () {
-                Route::resource('roles', App\Http\Controllers\RoleController::class)
-                    ->middleware('permission:manage_roles')->except(['show']);
+                Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('permission:manage_roles')->except(['show']);
 
-                Route::resource('categories', App\Http\Controllers\CategoryController::class)
-                    ->middleware('permission:manage_categories')->except(['show']);
+                Route::resource('categories', App\Http\Controllers\CategoryController::class)->middleware('permission:manage_categories')->except(['show']);
 
-                Route::resource('vehicles', App\Http\Controllers\VehicleController::class)
-                    ->middleware('permission:manage_vehicles');
+                Route::resource('vehicles', App\Http\Controllers\VehicleController::class)->middleware('permission:manage_vehicles');
 
                 Route::get('orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
+                Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
             });
     });

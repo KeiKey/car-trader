@@ -31,7 +31,9 @@ return [
     'state'    => 'State',
     'action'   => 'Action',
     'cart'     => 'Cart',
+    'role'     => 'Role',
     'buy'      => 'Buy',
+    'email'    => 'Email',
     'extra'    => 'Extra',
     'category' => 'Category',
     'purchaser'        => 'Purchaser',
@@ -55,6 +57,7 @@ return [
     'cart_is_empty'    => 'Cart is empty!',
     'cancel_order'     => 'Cancel order',
     'my_orders'        => 'My orders',
+    'users_table'      => 'Users table',
     'quantity_insufficient' => 'Vehicle quantity is insufficient!',
 
 ];

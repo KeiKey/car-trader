@@ -5,44 +5,28 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Roles table') }}</div>
+                    <div class="card-header d-flex justify-content-between">
+                        {{ __('general.users_table') }}
+                    </div>
 
                     <div class="card-body">
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <th class="w-auto">#</th>
-                                    <th class="w-25">{{ __('Name') }}</th>
-                                    <th class="w-50">{{ __('Permissions') }}</th>
-                                    <th class="w-auto text-end">{{ __('Actions') }}</th>
-                                </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ __('general.name') }}</th>
+                                <th>{{ __('general.email') }}</th>
+                                <th>{{ __('general.role') }}</th>
+                            </tr>
                             </thead>
 
                             <tbody>
-                            @foreach($roles as $role)
+                            @foreach($users as $user)
                                 <tr>
-                                    <th>{{ $role->id }}</th>
-                                    <td>{{ $role->name }}</td>
-                                    <td>
-                                        @foreach($role->permissions as $permission)
-                                            <span class="badge rounded-pill bg-primary">{{ $permission->name }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td class="d-flex justify-content-end">
-                                        <a class="btn btn-sm btn-warning mx-1" href="{{ route('roles.edit', $role) }}"><i class="fa fa-edit"></i></a>
-
-                                        <form
-                                            @if($role->non_deletable) title="Role is non deletable" @endif
-                                            action="{{ route('roles.destroy', $role) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('delete')
-
-                                            <button type="submit" @class(['btn btn-sm btn-danger', 'disabled' => $role->non_deletable])>
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                    <th>{{ $user->id }}</th>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->roles->first()->name }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
