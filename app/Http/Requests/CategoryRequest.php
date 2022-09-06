@@ -23,8 +23,14 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => ['required', 'string', 'max:255', 'unique:categories,name']
+        $rules = [
+            'name' => ['required', 'string', 'max:255'],
         ];
+
+        if ($this->isMethod('POST')) {
+            $rules['name'][] = 'unique:categories,name';
+        }
+
+        return $rules;
     }
 }
