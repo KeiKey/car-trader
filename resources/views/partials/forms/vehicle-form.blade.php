@@ -1,4 +1,4 @@
-<form action="{{ isset($vehicle) ? route('vehicles.update', ['vehicle' => $vehicle]) : route('vehicles.store') }}" method="POST">
+<form action="{{ isset($vehicle) ? route('vehicles.update', ['vehicle' => $vehicle]) : route('vehicles.store') }}" method="POST" id="vehicle-form">
     @csrf
     @isset($vehicle)
         @method('PUT')
@@ -147,7 +147,7 @@
         </div>
     </div>
 
-    <livewire:vehicle-categories-component :categories='$categories' :existingVehicleCategories="$categories"/>
+    <livewire:vehicle-categories-component :categories='$categories' :vehicleCategories="[]"/>
 
     <div class="row mb-0">
         <div class="col-md-6 offset-md-3">

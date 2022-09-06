@@ -47,9 +47,13 @@ class VehicleController extends Controller
      */
     public function store(VehicleRequest $request): RedirectResponse
     {
-        $this->vehicleService->createVehicle($request->validated());
+        try {
+            $this->vehicleService->createVehicle($request->validated());
 
-        return redirect()->route('vehicles.index');
+            return redirect()->route('vehicles.index');
+        } catch (\Exception $exception) {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -72,9 +76,13 @@ class VehicleController extends Controller
      */
     public function update(VehicleRequest $request, Vehicle $vehicle): RedirectResponse
     {
-        $this->vehicleService->updateVehicle($vehicle, $request->validated());
+        try {
+            $this->vehicleService->updateVehicle($vehicle, $request->validated());
 
-        return redirect()->route('vehicles.index');
+            return redirect()->route('vehicles.index');
+        } catch (\Exception $exception) {
+            return redirect()->back();
+        }
     }
 
     /**

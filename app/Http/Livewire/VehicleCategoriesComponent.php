@@ -9,15 +9,13 @@ use Livewire\Component;
 class VehicleCategoriesComponent extends Component
 {
     public Collection $categories;
+    public array $vehicleCategories;
+    public Collection $categoryOptions;
 
-    public \Illuminate\Support\Collection $existingVehicleCategories;
-
-    public Collection $notChosenCategories;
-
-//    public function booted()
-//    {
-//        $this->notChosenCategories = $this->categories->diffAssoc($this->existingVehicleCategories);
-//    }
+    public function mount(): void
+    {
+        $this->categoryOptions = $this->categories;
+    }
 
     public function render(): View
     {
@@ -27,24 +25,43 @@ class VehicleCategoriesComponent extends Component
     /**
      * Generate row in the table.
      *
-     * @return Void
+     * @return void
      */
-    public function addRow(): Void
+    public function addRow(): void
     {
-        $this->existingVehicleCategories->push($this->existingVehicleCategories->last());
+        $key = array_key_last($this->vehicleCategories) ? array_key_last($this->vehicleCategories)+1 : 1;
+
+        $this->vehicleCategories[$key] = ['category_id' => null, 'extra' => ''];
     }
 
     /**
      * Delete the selected row from the table.
      *
-     * @param int $categoryId
-     * @return Void
+     * @param int $vehicleCategoryKey
+     * @return void
      */
-    public function deleteRow(int $categoryId): Void
+    public function deleteRow(int $vehicleCategoryKey): void
     {
-        $this->existingVehicleCategories = $this->existingVehicleCategories
-            ->filter(function($category) use ($categoryId) {
-                return $category->id !== $categoryId;
+        unset($this->vehicleCategories[$vehicleCategoryKey]);
+    }
+
+    /**
+     * Category option selected.
+     *
+     * @param int $choosenCategory
+     * @param $vehicleCategoryKey
+     */
+    public function categorySelected(int $choosenCategory, $vehicleCategoryKey): void
+    {
+        if ($choosenCategory === 0) {
+            return;
+        }
+
+        $this->vehicleCategories[$vehicleCategoryKey]['category_id'] = $choosenCategory;
+
+        $this->categoryOptions = $this->categoryOptions
+            ->filter(function($category) use ($choosenCategory) {
+                return $category->id != $choosenCategory;
             });
     }
 }
