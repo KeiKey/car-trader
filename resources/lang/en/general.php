@@ -61,6 +61,10 @@ return [
     'cancel_order'     => 'Cancel order',
     'my_orders'        => 'My orders',
     'users_table'      => 'Users table',
+    'create_success'   => ':Title was created successfully!',
+    'update_success'   => ':Title was updated successfully!',
+    'delete_success'   => ':Title was deleted successfully!',
+    'cancel_success'   => ':Title was canceled successfully!',
     'quantity_insufficient' => 'Vehicle quantity is insufficient!',
 
 ];

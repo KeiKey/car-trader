@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category\Category;
 use App\Services\CategoryService;
+use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\View\View;
-use Throwable;
 
 class CategoryController extends Controller
 {
@@ -46,9 +47,13 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request): RedirectResponse
     {
-        $this->categoryService->createCategory($request->validated());
+        try {
+            $category = $this->categoryService->createCategory($request->validated());
 
-        return redirect()->route('categories.index');
+            return RedirectResponse::success('categories.index', Lang::get('general.create_success', ['title' => $category->name]));
+        } catch (Exception $exception) {
+            return RedirectResponse::error(null, $exception->getMessage());
+        }
     }
 
     /**
@@ -71,9 +76,13 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
-        $this->categoryService->updateCategory($category, $request->validated());
+        try {
+            $category = $this->categoryService->updateCategory($category, $request->validated());
 
-        return redirect()->route('categories.index');
+            return RedirectResponse::success('categories.index', Lang::get('general.update_success', ['title' => $category->name]));
+        } catch (Exception $exception) {
+            return RedirectResponse::error(null, $exception->getMessage());
+        }
     }
 
     /**
@@ -87,9 +96,9 @@ class CategoryController extends Controller
         try {
             $this->categoryService->deleteCategory($category);
 
-            return redirect()->route('categories.index');
-        } catch (Throwable $exception) {
-            return redirect()->route('categories.index');
+            return RedirectResponse::success('categories.index', Lang::get('general.delete_success', ['title' => $category->name]));
+        } catch (Exception $exception) {
+            return RedirectResponse::error(null, $exception->getMessage());
         }
     }
 }

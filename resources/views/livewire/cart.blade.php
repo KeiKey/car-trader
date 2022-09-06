@@ -65,7 +65,7 @@
                                 </td>
                                 <td></td>
                                 <td>
-                                    <button class="btn btn-sm btn-danger" wire:click="clearCart()">
+                                    <button class="btn btn-sm btn-danger" wire:click="clearCart()" type="button">
                                         <i class="fa fa-trash"></i> {{ __('general.clear_cart') }}
                                     </button>
                                 </td>

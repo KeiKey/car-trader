@@ -31,4 +31,5 @@ const app = new Vue({
     el: '#app',
 });
 
+require('./alerts');
 require('./custom');

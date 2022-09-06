@@ -9,11 +9,11 @@
 
         <div class="col-md-8">
             <input id="name" type="text"
-                   class="form-control @error('name') is-invalid @enderror @if($role->non_deletable) disabled @endif"
+                   class="form-control @error('name') is-invalid @enderror"
                    name="name"
                    value="{{ old('name', $role->name ?? '') }}"
                    required
-                   {{ $role->non_deletable ? ' readonly' : '' }}
+                   {{ isset($role) ? ($role->non_deletable ? ' readonly' : '') : '' }}
                    autocomplete="name"
                    autofocus>
 

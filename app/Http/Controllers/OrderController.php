@@ -9,6 +9,7 @@ use App\Services\OrderService;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\View\View;
 
 class OrderController extends Controller
@@ -69,9 +70,9 @@ class OrderController extends Controller
         try {
             $this->orderService->createOrder($request->all(), $request->user());
 
-            return redirect()->back();
+            return RedirectResponse::success(null, Lang::get('general.create_success', ['title' => 'Order']));
         } catch (Exception $exception) {
-            return redirect()->back();
+            return RedirectResponse::error(null, $exception->getMessage());
         }
     }
 
@@ -88,9 +89,9 @@ class OrderController extends Controller
         try {
             $this->orderService->cancelOrder($order, $request->user());
 
-            return redirect()->back();
+            return RedirectResponse::success(null, Lang::get('general.cancel_success', ['title' => 'Order']));
         } catch (Exception $exception) {
-            return redirect()->back();
+            return RedirectResponse::error(null, $exception->getMessage());
         }
     }
 }

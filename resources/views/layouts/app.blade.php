@@ -22,6 +22,8 @@
 </head>
 <body>
     <div id="app">
+        @include('partials.alerts')
+
         <nav @class([
                 'navbar navbar-expand-md shadow-sm',
                 'navbar-light bg-white' => !str_contains(url()->current(), 'panel'),

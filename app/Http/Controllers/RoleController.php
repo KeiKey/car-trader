@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RoleRequest;
 use App\Services\RoleService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -47,9 +48,13 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request): RedirectResponse
     {
-        $this->roleService->createRole($request->validated());
+        try {
+            $role = $this->roleService->createRole($request->validated());
 
-        return redirect()->route('roles.index');
+            return RedirectResponse::success('roles.index', Lang::get('general.create_success', ['title' => $role->name]));
+        } catch (Throwable $exception) {
+            return RedirectResponse::error(null, $exception->getMessage());
+        }
     }
 
     /**
@@ -75,9 +80,13 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, Role $role): RedirectResponse
     {
-        $this->roleService->updateRole($role, $request->validated());
+        try {
+            $role = $this->roleService->updateRole($role, $request->validated());
 
-        return redirect()->route('roles.index');
+            return RedirectResponse::success('roles.index', Lang::get('general.update_success', ['title' => $role->name]));
+        } catch (Throwable $exception) {
+            return RedirectResponse::error(null, $exception->getMessage());
+        }
     }
 
     /**
@@ -89,11 +98,11 @@ class RoleController extends Controller
     public function destroy(Role $role): RedirectResponse
     {
         try {
-            $this->roleService->deleteRole($role);
+            $role = $this->roleService->deleteRole($role);
 
-            return redirect()->route('roles.index');
+            return RedirectResponse::success('roles.index', Lang::get('general.delete_success', ['title' => $role->name]));
         } catch (Throwable $exception) {
-            return redirect()->route('roles.index');
+            return RedirectResponse::error(null, $exception->getMessage());
         }
     }
 }

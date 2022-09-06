@@ -6,7 +6,9 @@ use App\Http\Requests\VehicleRequest;
 use App\Models\Category\Category;
 use App\Models\Vehicle\Vehicle;
 use App\Services\VehicleService;
+use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\View\View;
 use Throwable;
 
@@ -48,11 +50,11 @@ class VehicleController extends Controller
     public function store(VehicleRequest $request): RedirectResponse
     {
         try {
-            $this->vehicleService->createVehicle($request->validated());
+            $vehicle = $this->vehicleService->createVehicle($request->validated());
 
-            return redirect()->route('vehicles.index');
-        } catch (\Exception $exception) {
-            return redirect()->back();
+            return RedirectResponse::success('vehicles.index', Lang::get('general.create_success', ['title' => $vehicle->model]));
+        } catch (Exception $exception) {
+            return RedirectResponse::error(null, $exception->getMessage());
         }
     }
 
@@ -79,9 +81,9 @@ class VehicleController extends Controller
         try {
             $this->vehicleService->updateVehicle($vehicle, $request->validated());
 
-            return redirect()->route('vehicles.index');
-        } catch (\Exception $exception) {
-            return redirect()->back();
+            return RedirectResponse::success('vehicles.index', Lang::get('general.update_success', ['title' => $vehicle->model]));
+        } catch (Exception $exception) {
+            return RedirectResponse::error(null, $exception->getMessage());
         }
     }
 
@@ -96,9 +98,9 @@ class VehicleController extends Controller
         try {
             $this->vehicleService->deleteVehicle($vehicle);
 
-            return redirect()->route('vehicles.index');
+            return RedirectResponse::success('vehicles.index', Lang::get('general.delete_success', ['title' => $vehicle->model]));
         } catch (Throwable $exception) {
-            return redirect()->route('vehicles.index');
+            return RedirectResponse::error(null, $exception->getMessage());
         }
     }
 }
