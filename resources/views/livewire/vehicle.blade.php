@@ -43,6 +43,14 @@
                             <span class="badge rounded-pill bg-primary">{{ $vehicle->quantity }}</span>
                         </h5>
                     </li>
+                    @foreach($vehicle->categories as $vahicleCategory)
+                        <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-secondary">
+                            {{ $vahicleCategory->name }} ({{ __('general.custom_category') }}):
+                            <h5 class="mb-0">
+                                <span class="badge rounded-pill bg-primary">{{ $vahicleCategory->pivot->extra }}</span>
+                            </h5>
+                        </li>
+                    @endforeach
                 </ul>
 
                 <p class="card-text"><small class="text-muted">{{ __('general.last_updated_at') }}: {{ $vehicle->updated_at->format('H:i d/m/Y') }}</small></p>

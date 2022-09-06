@@ -38,6 +38,7 @@ return [
     'category' => 'Category',
     'purchaser'        => 'Purchaser',
     'permissions'      => 'Permissions',
+    'custom_category'  => 'Custom Category',
     'categories'       => 'Categories',
     'categories_table' => 'Categories table',
     'create_category'  => 'Create Category',
